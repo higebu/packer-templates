@@ -1,0 +1,6 @@
+*.box
+packer_cache
+.DS_Store
+linux.iso
+output-virtualbox
+output-vmware

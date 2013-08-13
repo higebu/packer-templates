@@ -1,0 +1,146 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "install system<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "<enter><wait10>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "config<enter><wait>",
+        "delete system console device ttyS0<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
+        "set system login user vagrant level admin<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter>"
+      ],
+      "boot_wait": "30s",
+      "disk_size": 10140,
+      "guest_os_type": "Linux26_64",
+      "iso_checksum": "9daa5c10ee1ea956051340d1780dd6ab",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://packages.vyatta.com/vyatta/iso/VC6.4/vyatta-livecd-virt_VC6.4-2012.05.31_amd64.iso",
+      "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "3000s",
+      "type": "virtualbox",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "256"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ]
+    },
+    {
+      "boot_command": [
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "install system<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "<enter><wait10>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "config<enter><wait>",
+        "delete system console device ttyS0<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
+        "set system login user vagrant level admin<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter>"
+      ],
+      "boot_wait": "30s",
+      "disk_size": 10140,
+      "guest_os_type": "other26xlinux-64",
+      "iso_checksum": "9daa5c10ee1ea956051340d1780dd6ab",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://packages.vyatta.com/vyatta/iso/VC6.4/vyatta-livecd-virt_VC6.4-2012.05.31_amd64.iso",
+      "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "3000s",
+      "tools_upload_flavor": "linux",
+      "type": "vmware",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "memsize": "256",
+        "numvcpus": "1"
+      }
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "./vyatta-livecd-virt_VC6.4-2012.05.31_amd64_{{.Provider}}.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "override": {
+        "virtualbox": {
+          "scripts": [
+            "base.sh",
+            "vagrant.sh",
+            "virtualbox.sh",
+            "cleanup.sh",
+            "zerodisk.sh"
+          ]
+        },
+        "vmware": {
+          "scripts": [
+            "base.sh",
+            "vagrant.sh",
+            "vmware.sh",
+            "cleanup.sh",
+            "zerodisk.sh"
+          ]
+        }
+      },
+      "type": "shell"
+    }
+  ]
+}
+
