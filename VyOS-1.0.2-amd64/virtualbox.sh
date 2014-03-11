@@ -1,3 +1,4 @@
+set -e
 set -x
 
 if test -f VBoxGuestAdditions.iso ; then
@@ -10,7 +11,7 @@ if test -f VBoxGuestAdditions.iso ; then
 
   # Install the VirtualBox guest additions
   sudo mount -o loop VBoxGuestAdditions.iso /mnt
-  yes|sudo /bin/sh /mnt/VBoxLinuxAdditions.run
+  yes|sudo /bin/sh /mnt/VBoxLinuxAdditions.run || :
   sudo umount /mnt
 
   # Start the newly build driver

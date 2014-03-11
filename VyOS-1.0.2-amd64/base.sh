@@ -1,6 +1,3 @@
-set -e
-set -x
-
 WRAPPER=/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper
 
 # Add Debian squeeze package repository
@@ -17,8 +14,8 @@ sudo aptitude -y update
 # Install build-essential and linux-vyatta-kbuild
 sudo aptitude -y install build-essential
 sudo aptitude -y install linux-vyatta-kbuild
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta-virt /usr/src/linux
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta-virt /lib/modules/$(uname -r)/build
+sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /usr/src/linux
+sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /lib/modules/$(uname -r)/build
 
 # Tweak sshd to prevent DNS resolution (speed up logins)
 $WRAPPER begin

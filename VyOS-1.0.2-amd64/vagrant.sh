@@ -1,6 +1,3 @@
-set -e
-set -x
-
 WRAPPER=/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper
 
 # Set up Vagrant.

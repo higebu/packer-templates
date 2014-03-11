@@ -1,10 +1,8 @@
-set -e
-set -x
-
 WRAPPER=/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper
 
 # Clean up
 sudo unlink /usr/src/linux
+sudo unlink /lib/modules/$(uname -r)/build
 sudo aptitude -y remove linux-vyatta-kbuild build-essential
 sudo aptitude -y purge --purge-unused
 

@@ -36,8 +36,8 @@
       "boot_wait": "30s",
       "disk_size": 10140,
       "guest_os_type": "Linux26_64",
-      "iso_checksum": "f0a9c5efa369adc599e6077a2ab7e4bc",
-      "iso_checksum_type": "md5",
+      "iso_checksum": "8ce6c49edd2d9c8d907dc6354748a9c85f587ca0",
+      "iso_checksum_type": "sha1",
       "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.2/vyos-1.0.2-amd64.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
@@ -95,15 +95,15 @@
       "boot_wait": "30s",
       "disk_size": 10140,
       "guest_os_type": "other26xlinux-64",
-      "iso_checksum": "e998de3fc67d901f016f91bd0ed6bb8d",
-      "iso_checksum_type": "md5",
+      "iso_checksum": "8ce6c49edd2d9c8d907dc6354748a9c85f587ca0",
+      "iso_checksum_type": "sha1",
       "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.2/vyos-1.0.2-amd64.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "3000s",
       "tools_upload_flavor": "linux",
-      "type": "vmware",
+      "type": "vmware-iso",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "memsize": "256",
@@ -131,7 +131,7 @@
             "zerodisk.sh"
           ]
         },
-        "vmware": {
+        "vmware-iso": {
           "scripts": [
             "base.sh",
             "vagrant.sh",

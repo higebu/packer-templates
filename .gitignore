@@ -1,6 +1,6 @@
 *.box
 packer_cache
+output-*
 .DS_Store
 linux.iso
-output-virtualbox
-output-vmware
+*.swp
