@@ -25,7 +25,7 @@
         "vyatta<enter><wait>",
         "vagrant<enter><wait>",
         "config<enter><wait>",
-        "delete system console device ttyS0<enter><wait>",
+        "delete system console<enter><wait>",
         "set interface ethernet eth0 address dhcp<enter><wait>",
         "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
         "set system login user vagrant level admin<enter><wait>",
@@ -43,7 +43,7 @@
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "3000s",
-      "type": "virtualbox",
+      "type": "virtualbox-iso",
       "vboxmanage": [
         [
           "modifyvm",
@@ -84,7 +84,7 @@
         "vyatta<enter><wait>",
         "vagrant<enter><wait>",
         "config<enter><wait>",
-        "delete system console device ttyS0<enter><wait>",
+        "delete system console<enter><wait>",
         "set interface ethernet eth0 address dhcp<enter><wait>",
         "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
         "set system login user vagrant level admin<enter><wait>",
@@ -120,7 +120,7 @@
   "provisioners": [
     {
       "override": {
-        "virtualbox": {
+        "virtualbox-iso": {
           "scripts": [
             "base.sh",
             "vagrant.sh",
