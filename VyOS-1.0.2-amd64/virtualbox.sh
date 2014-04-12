@@ -1,6 +1,3 @@
-set -e
-set -x
-
 if test -f VBoxGuestAdditions.iso ; then
 
   # Install dkms for dynamic compiles
