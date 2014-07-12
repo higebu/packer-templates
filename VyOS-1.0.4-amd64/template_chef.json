@@ -1,0 +1,161 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "install system<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "<enter><wait10>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyatta<enter><wait>",
+        "vagrant<enter><wait>",
+        "config<enter><wait>",
+        "delete system console<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
+        "set system login user vagrant level admin<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter>"
+      ],
+      "boot_wait": "30s",
+      "disk_size": 10140,
+      "guest_os_type": "Linux26_64",
+      "iso_checksum": "cd521c1b7f8cca3cb2c467f8b7d1e638770fafb9",
+      "iso_checksum_type": "sha1",
+      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
+      "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "3000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "256"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ]
+    },
+    {
+      "boot_command": [
+        "vyatta<enter><wait>",
+        "vyatta<enter><wait>",
+        "install system<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "vagrant<enter><wait>",
+        "vagrant<enter><wait>",
+        "<enter><wait10>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyatta<enter><wait>",
+        "vagrant<enter><wait>",
+        "config<enter><wait>",
+        "delete system console<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
+        "set system login user vagrant level admin<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter>"
+      ],
+      "boot_wait": "30s",
+      "disk_size": 10140,
+      "guest_os_type": "other26xlinux-64",
+      "iso_checksum": "cd521c1b7f8cca3cb2c467f8b7d1e638770fafb9",
+      "iso_checksum_type": "sha1",
+      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
+      "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "3000s",
+      "tools_upload_flavor": "linux",
+      "type": "vmware-iso",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "memsize": "256",
+        "numvcpus": "1"
+      }
+    }
+  ],
+  "variables": {
+    "version": "",
+    "cloud_token": ""
+  },
+  "post-processors": [
+    [{
+      "output": "./vyos-1.0.4-amd64-chef_{{.Provider}}.box",
+      "type": "vagrant"
+    },
+    {
+      "type": "vagrant-cloud",
+      "access_token": "{{user `cloud_token`}}",
+      "box_tag": "higebu/vyos-1.0.4-amd64-chef",
+      "version": "{{user `version`}}",
+      "version_description": "Initial release"
+    }]
+  ],
+  "provisioners": [
+    {
+      "override": {
+        "virtualbox-iso": {
+          "scripts": [
+            "base.sh",
+            "vagrant.sh",
+            "virtualbox.sh",
+            "ruby.sh",
+            "chef.sh",
+            "cleanup.sh",
+            "zerodisk.sh"
+          ]
+        },
+        "vmware-iso": {
+          "scripts": [
+            "base.sh",
+            "vagrant.sh",
+            "vmware.sh",
+            "ruby.sh",
+            "chef.sh",
+            "cleanup.sh",
+            "zerodisk.sh"
+          ]
+        }
+      },
+      "type": "shell"
+    }
+  ]
+}
+
