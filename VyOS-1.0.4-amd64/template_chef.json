@@ -2,8 +2,8 @@
   "builders": [
     {
       "boot_command": [
-        "vyatta<enter><wait>",
-        "vyatta<enter><wait>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
         "install system<enter><wait>",
         "<enter><wait>",
         "<enter><wait>",
@@ -22,7 +22,7 @@
         "<wait10>",
         "<wait10>",
         "<wait10>",
-        "vyatta<enter><wait>",
+        "vyos<enter><wait>",
         "vagrant<enter><wait>",
         "config<enter><wait>",
         "delete system console<enter><wait>",
