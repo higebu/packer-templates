@@ -12,7 +12,7 @@ $WRAPPER commit
 $WRAPPER end
 
 # Install vagrant keys
-PUBLIC_KEY=$(curl -s 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub')
+PUBLIC_KEY=$(curl -s 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub')
 TYPE=$(echo $PUBLIC_KEY | awk '{print $1}')
 KEY=$(echo $PUBLIC_KEY | awk '{print $2}')
 $WRAPPER begin

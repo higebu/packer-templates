@@ -5,8 +5,9 @@ date | sudo tee /etc/vagrant_box_build_time
 
 # Create the user vagrant with password vagrant
 set system login user vagrant authentication plaintext-password vagrant
-set system login user vagrant level admin
+#set system login user vagrant level admin
 commit
+save
 
 # Install vagrant keys
 PUBLIC_KEY=$(curl -s 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub')
@@ -15,6 +16,7 @@ KEY=$(echo $PUBLIC_KEY | awk '{print $2}')
 set system login user vagrant authentication public-keys vagrant type $TYPE
 set system login user vagrant authentication public-keys vagrant key $KEY
 commit
+save
 
 # Customize the message of the day
 echo 'Welcome to your Vagrant-built virtual machine.' | sudo tee /var/run/motd

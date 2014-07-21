@@ -24,7 +24,6 @@ sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /usr
 sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /lib/modules/$(uname -r)/build
 
 # Tweak sshd to prevent DNS resolution (speed up logins)
-configure
 set service ssh disable-host-validation
 commit
 save

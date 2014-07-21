@@ -111,11 +111,22 @@
       }
     }
   ],
+  "variables": {
+    "version": "",
+    "cloud_token": ""
+  },
   "post-processors": [
-    {
+    [{
       "output": "./vyatta-livecd_VC6.6R1_amd64_{{.Provider}}.box",
       "type": "vagrant"
-    }
+    },
+    {
+      "type": "vagrant-cloud",
+      "access_token": "{{user `cloud_token`}}",
+      "box_tag": "higebu/vyatta-core-6.6r1-amd64",
+      "version": "{{user `version`}}",
+      "version_description": "Initial release"
+    }]
   ],
   "provisioners": [
     {

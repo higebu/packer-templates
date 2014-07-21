@@ -9,13 +9,19 @@
         "<enter><wait>",
         "<enter><wait>",
         "Yes<enter><wait>",
-        "<enter><wait10><wait10><wait10>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
         "<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
         "<enter><wait10>",
         "reboot<enter><wait>",
-        "Yes<enter><wait10><wait10><wait10><wait10><wait10>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
         "vyos<enter><wait>",
         "vagrant<enter><wait>",
         "config<enter><wait>",
@@ -30,9 +36,9 @@
       "boot_wait": "30s",
       "disk_size": 10140,
       "guest_os_type": "Linux26_64",
-      "iso_checksum": "03e6ef637cf9b0cfa4a30938530429e8a9f11e2e",
+      "iso_checksum": "0fb44787db50dbf8439e26944a053baa8d184f26",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://dev.packages.vyos.net/iso/helium/amd64/VyOS-livecd-1407182227-7e8544a-amd64.iso",
+      "iso_url": "http://builds.vyos.net/iso/development/helium/amd64/vyos-helium-amd64-20140419.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -62,13 +68,19 @@
         "<enter><wait>",
         "<enter><wait>",
         "Yes<enter><wait>",
-        "<enter><wait10><wait10><wait10>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
         "<enter><wait>",
         "vagrant<enter><wait>",
         "vagrant<enter><wait>",
         "<enter><wait10>",
         "reboot<enter><wait>",
-        "Yes<enter><wait10><wait10><wait10><wait10><wait10>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
         "vyos<enter><wait>",
         "vagrant<enter><wait>",
         "config<enter><wait>",
@@ -83,9 +95,9 @@
       "boot_wait": "30s",
       "disk_size": 10140,
       "guest_os_type": "other26xlinux-64",
-      "iso_checksum": "03e6ef637cf9b0cfa4a30938530429e8a9f11e2e",
+      "iso_checksum": "0fb44787db50dbf8439e26944a053baa8d184f26",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://dev.packages.vyos.net/iso/helium/amd64/VyOS-livecd-1407182227-7e8544a-amd64.iso",
+      "iso_url": "http://builds.vyos.net/iso/development/helium/amd64/vyos-helium-amd64-20140419.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -99,22 +111,11 @@
       }
     }
   ],
-  "variables": {
-    "version": "",
-    "cloud_token": ""
-  },
   "post-processors": [
-    [{
-      "output": "./vyos-helium-1407182227-7e8544a-amd64_{{.Provider}}.box",
-      "type": "vagrant"
-    },
     {
-      "type": "vagrant-cloud",
-      "access_token": "{{user `cloud_token`}}",
-      "box_tag": "higebu/vyos-helium-1407182227-7e8544a-amd64",
-      "version": "{{user `version`}}",
-      "version_description": "Initial release"
-    }]
+      "output": "./vyos-helium-amd64-20140419_{{.Provider}}.box",
+      "type": "vagrant"
+    }
   ],
   "provisioners": [
     {

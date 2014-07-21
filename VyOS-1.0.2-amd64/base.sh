@@ -11,9 +11,9 @@ sudo aptitude -y update
 
 # Install build-essential and linux-vyatta-kbuild
 sudo aptitude -y install build-essential
-sudo aptitude -y install linux-vyatta-kbuild
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /usr/src/linux
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /lib/modules/$(uname -r)/build
+#sudo aptitude -y install linux-vyatta-kbuild
+#sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /usr/src/linux
+#sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /lib/modules/$(uname -r)/build
 
 # Tweak sshd to prevent DNS resolution (speed up logins)
 set service ssh disable-host-validation
