@@ -7,6 +7,7 @@ date | sudo tee /etc/vagrant_box_build_time
 set system login user vagrant authentication plaintext-password vagrant
 set system login user vagrant level admin
 commit
+save
 
 # Install vagrant keys
 PUBLIC_KEY=$(curl -s 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub')
@@ -15,6 +16,7 @@ KEY=$(echo $PUBLIC_KEY | awk '{print $2}')
 set system login user vagrant authentication public-keys vagrant type $TYPE
 set system login user vagrant authentication public-keys vagrant key $KEY
 commit
+save
 
 # Install NFS client
 sudo aptitude -y install nfs-common
