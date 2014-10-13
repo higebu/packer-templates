@@ -1,20 +1,31 @@
+#!/bin/vbash
 source /opt/vyatta/etc/functions/script-template
 
 # Clean up
 sudo unlink /usr/src/linux
 sudo unlink /lib/modules/$(uname -r)/build
 sudo aptitude -y remove linux-vyatta-kbuild build-essential
-sudo aptitude -y purge --purge-unused
+sudo apt-get autoclean
+sudo apt-get clean
 
-# Remove Debian squeeze package and Vyatta unstable repository
+# Delete Debian squeeze package repository and temporary mirror
+delete system package repository community
 delete system package repository squeeze
+delete system package repository squeeze-lts
+set system package repository community components 'main'
+set system package repository community distribution 'hydrogen'
+set system package repository community url 'http://packages.vyos.net/vyos'
 commit
 save
 
 # Removing leftover leases and persistent rules
 sudo rm -f /var/lib/dhcp3/*
 
+# Removing apt caches
+sudo rm -rf /var/cache/apt/*
+
 # Removing hw-id
+configure
 delete interfaces ethernet eth0 hw-id
 commit
 save

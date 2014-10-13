@@ -17,6 +17,3 @@ set system login user vagrant authentication public-keys vagrant type $TYPE
 set system login user vagrant authentication public-keys vagrant key $KEY
 commit
 save
-
-# Install NFS client
-sudo aptitude -y install nfs-common
