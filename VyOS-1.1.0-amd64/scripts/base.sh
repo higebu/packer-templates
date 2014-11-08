@@ -17,10 +17,11 @@ save
 
 sudo apt-get -y update
 
-# Install linux-vyatta-kbuild
+# Install build-essential and linux-vyatta-kbuild
+sudo apt-get -y install build-essential
 sudo apt-get -y install linux-vyatta-kbuild
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /usr/src/linux
-sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyatta/ /lib/modules/$(uname -r)/build
+sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyos/ /usr/src/linux
+sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyos/ /lib/modules/$(uname -r)/build
 
 # Tweak sshd to prevent DNS resolution (speed up logins)
 set service ssh disable-host-validation

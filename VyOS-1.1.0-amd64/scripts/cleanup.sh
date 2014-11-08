@@ -13,7 +13,7 @@ delete system package repository community
 delete system package repository squeeze
 delete system package repository squeeze-lts
 set system package repository community components 'main'
-set system package repository community distribution 'hydrogen'
+set system package repository community distribution 'helium'
 set system package repository community url 'http://packages.vyos.net/vyos'
 commit
 save
@@ -25,7 +25,6 @@ sudo rm -f /var/lib/dhcp3/*
 sudo rm -rf /var/cache/apt/*
 
 # Removing hw-id
-configure
 delete interfaces ethernet eth0 hw-id
 commit
 save
