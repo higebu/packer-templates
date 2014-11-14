@@ -28,18 +28,10 @@
         "configure<enter><wait>",
         "delete system console<enter><wait>",
         "set interface ethernet eth0 address dhcp<enter><wait>",
-        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
-        "set system login user vagrant level admin<enter><wait>",
         "set service ssh<enter><wait>",
         "commit<enter><wait>",
         "save<enter><wait>",
-        "exit<enter><wait>",
-        "reboot<enter><wait>",
-        "Yes<enter><wait10>",
-        "<wait10>",
-        "<wait10>",
-        "<wait10>",
-        "<wait10>"
+        "exit<enter>"
       ],
       "boot_wait": "30s",
       "disk_size": 10140,
@@ -49,7 +41,7 @@
       "iso_url": "http://mirror.vyos-users.jp/iso/release/1.1.0/vyos-1.1.0-amd64.iso",
       "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
       "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
+      "ssh_username": "vyos",
       "ssh_wait_timeout": "3000s",
       "type": "virtualbox-iso",
       "vboxmanage": [
@@ -135,7 +127,8 @@
   "post-processors": [
     [{
       "output": "./vyos-1.1.0-amd64_{{.Provider}}.box",
-      "type": "vagrant"
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile.tpl"
     },
     {
       "type": "vagrant-cloud",
