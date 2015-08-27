@@ -1,9 +1,9 @@
 {
   "variables": {
-    "product_version": "1.1.5",
-    "iso_path": "http://mirror.vyos-users.jp/iso/release/1.1.5/vyos-1.1.5-amd64.iso",
-    "iso_checksum_value": "2acf7435d5976d16bbdb86ec3910964b6bcd56be",
-    "artifact_name": "higebu/vyos-1.1.5-amd64",
+    "product_version": "1.1.6",
+    "iso_path": "http://mirror.vyos-users.jp/iso/release/1.1.6/vyos-1.1.6-amd64.iso",
+    "iso_checksum_value": "7bc131b199d59961aeb9568c375404d009dd6bff",
+    "artifact_name": "higebu/vyos-1.1.6-amd64",
     "artifact_version": "1.0.0"
   },
   "builders": [
