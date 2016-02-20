@@ -27,10 +27,16 @@ if test -f VBoxGuestAdditions.iso ; then
   # If libdbus is not installed, virtualbox will not autostart
   sudo aptitude -y install --without-recommends libdbus-1-3
 
+  # FixUp: rename unnecessary rc.d/init.d directory to help VirtualBox guest additions install properly
+  sudo mv /etc/rc.d/init.d/ /etc/rc.d/init.d.renamed/
+
   # Install the VirtualBox guest additions
   sudo mount -o loop VBoxGuestAdditions.iso /mnt
   yes|sudo /bin/sh /mnt/VBoxLinuxAdditions.run || :
   sudo umount /mnt
+
+  # FixUp: rename directory back
+  sudo mv /etc/rc.d/init.d.renamed/ /etc/rc.d/init.d/
 
   # Start the newly build driver
   sudo /etc/init.d/vboxadd start
