@@ -18,7 +18,10 @@ if not exist %template% (
 echo.
 echo Build "%template%"
 call packer version || exit /b 2
+
+pushd "%name%"
 call packer build "%template%" || exit /b 3
+popd
 
 echo.
 echo Add local box as "local-%name%" 
