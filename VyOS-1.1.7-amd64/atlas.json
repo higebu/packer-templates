@@ -4,7 +4,7 @@
     "iso_path": "http://mirror.vyos-users.jp/iso/release/1.1.7/vyos-1.1.7-amd64.iso",
     "iso_checksum_value": "c40a889469e0eea43d92c73149f1058e3650863b",
     "artifact_name": "higebu/vyos-1.1.7-amd64",
-    "artifact_version": "1.0.1"
+    "artifact_version": "1.0.2"
   },
   "builders": [
     {
@@ -161,7 +161,7 @@
       "type": "shell"
     }
   ],
-  "post-processors": [
+  "post-processors": [[
     {
       "output": "./vyos-{{user `product_version`}}-amd64_{{.Provider}}.box",
       "type": "vagrant"
@@ -188,6 +188,6 @@
         "created_at": "{{timestamp}}"
       }
     }
-  ]
+  ]]
 }
 
