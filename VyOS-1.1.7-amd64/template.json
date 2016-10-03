@@ -1,7 +1,7 @@
 {
   "variables": {
     "product_version": "1.1.7",
-    "iso_path": "http://mirror.vyos-users.jp/iso/release/1.1.7/vyos-1.1.7-amd64.iso",
+    "iso_path": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.1.7/vyos-1.1.7-amd64.iso",
     "iso_checksum_value": "c40a889469e0eea43d92c73149f1058e3650863b"
   },
   "builders": [
@@ -139,20 +139,20 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/virtualbox.sh",
-            "scripts/cleanup.sh",
-            "scripts/zerodisk.sh"
+            "../scripts/helium/base.sh",
+            "../scripts/helium/vagrant.sh",
+            "../scripts/helium/virtualbox.sh",
+            "../scripts/helium/cleanup.sh",
+            "../scripts/helium/zerodisk.sh"
           ]
         },
         "vmware-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/vmware.sh",
-            "scripts/cleanup.sh",
-            "scripts/zerodisk.sh"
+            "../scripts/helium/base.sh",
+            "../scripts/helium/vagrant.sh",
+            "../scripts/helium/vmware.sh",
+            "../scripts/helium/cleanup.sh",
+            "../scripts/helium/zerodisk.sh"
           ]
         }
       },

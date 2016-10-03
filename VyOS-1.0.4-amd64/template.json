@@ -38,7 +38,7 @@
       "guest_os_type": "Linux26_64",
       "iso_checksum": "cd521c1b7f8cca3cb2c467f8b7d1e638770fafb9",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
+      "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
       "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -97,7 +97,7 @@
       "guest_os_type": "other26xlinux-64",
       "iso_checksum": "cd521c1b7f8cca3cb2c467f8b7d1e638770fafb9",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
+      "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.4/vyos-1.0.4-amd64.iso",
       "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -111,42 +111,31 @@
       }
     }
   ],
-  "variables": {
-    "version": "",
-    "cloud_token": ""
-  },
   "post-processors": [
-    [{
+    {
       "output": "./vyos-1.0.4-amd64_{{.Provider}}.box",
       "type": "vagrant"
-    },
-    {
-      "type": "vagrant-cloud",
-      "access_token": "{{user `cloud_token`}}",
-      "box_tag": "higebu/vyos-1.0.4-amd64",
-      "version": "{{user `version`}}",
-      "version_description": "Initial release"
-    }]
+    }
   ],
   "provisioners": [
     {
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "virtualbox.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/virtualbox.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         },
         "vmware-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "vmware.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/vmware.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         }
       },

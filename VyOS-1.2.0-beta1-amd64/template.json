@@ -1,7 +1,7 @@
 {
   "variables": {
     "product_version": "1.2.0-beta1",
-    "iso_path": "http://dev.mirror.vyos-users.jp/iso/preview/1.2.0-beta1/vyos-1.2.0-beta1-amd64.iso",
+    "iso_path": "http://dev.ftp.tsukuba.wide.ad.jp/software/vyos/iso/preview/1.2.0-beta1/vyos-1.2.0-beta1-amd64.iso",
     "iso_checksum_value": "d550d060b5968c6f7324bb7b885af15a91203b9e"
   },
   "builders": [

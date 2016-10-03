@@ -1,13 +1,15 @@
+#!/bin/vbash
 source /opt/vyatta/etc/functions/script-template
 
 # Clean up
-#sudo unlink /usr/src/linux
-#sudo unlink /lib/modules/$(uname -r)/build
-#sudo aptitude -y remove linux-vyatta-kbuild build-essential
-#sudo aptitude -y purge --purge-unused
+sudo unlink /usr/src/linux
+sudo unlink /lib/modules/$(uname -r)/build
+sudo aptitude -y remove linux-vyatta-kbuild build-essential
+sudo aptitude -y purge --purge-unused
 
-# Remove Debian squeeze package and Vyatta unstable repository
+# Remove Debian squeeze package
 delete system package repository squeeze
+delete system package repository squeeze-lts
 commit
 save
 

@@ -34,11 +34,11 @@
         "save<enter>"
       ],
       "boot_wait": "30s",
-      "disk_size": 10140,
+      "disk_size": 4096,
       "guest_os_type": "Linux26_64",
       "iso_checksum": "ca352842ca6ab83eefbafe72478eff30edbcd2f6",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.3/vyos-1.0.3-amd64.iso",
+      "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.3/vyos-1.0.3-amd64.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -93,11 +93,11 @@
         "save<enter>"
       ],
       "boot_wait": "30s",
-      "disk_size": 10140,
+      "disk_size": 4096,
       "guest_os_type": "other26xlinux-64",
       "iso_checksum": "ca352842ca6ab83eefbafe72478eff30edbcd2f6",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://mirror.vyos-users.jp/iso/release/1.0.3/vyos-1.0.3-amd64.iso",
+      "iso_url": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.0.3/vyos-1.0.3-amd64.iso",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
@@ -122,20 +122,20 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "virtualbox.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/virtualbox.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         },
         "vmware-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "vmware.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/vmware.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         }
       },

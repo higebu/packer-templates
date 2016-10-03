@@ -34,7 +34,7 @@
         "save<enter>"
       ],
       "boot_wait": "30s",
-      "disk_size": 10140,
+      "disk_size": 4096,
       "guest_os_type": "Linux26_64",
       "iso_checksum": "8ce6c49edd2d9c8d907dc6354748a9c85f587ca0",
       "iso_checksum_type": "sha1",
@@ -93,7 +93,7 @@
         "save<enter>"
       ],
       "boot_wait": "30s",
-      "disk_size": 10140,
+      "disk_size": 4096,
       "guest_os_type": "other26xlinux-64",
       "iso_checksum": "8ce6c49edd2d9c8d907dc6354748a9c85f587ca0",
       "iso_checksum_type": "sha1",
@@ -122,20 +122,20 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "virtualbox.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/virtualbox.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         },
         "vmware-iso": {
           "scripts": [
-            "base.sh",
-            "vagrant.sh",
-            "vmware.sh",
-            "cleanup.sh",
-            "zerodisk.sh"
+            "../scripts/hydrogen/base.sh",
+            "../scripts/hydrogen/vagrant.sh",
+            "../scripts/hydrogen/vmware.sh",
+            "../scripts/hydrogen/cleanup.sh",
+            "../scripts/hydrogen/zerodisk.sh"
           ]
         }
       },

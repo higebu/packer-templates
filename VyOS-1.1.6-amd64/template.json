@@ -1,10 +1,8 @@
 {
   "variables": {
     "product_version": "1.1.6",
-    "iso_path": "http://mirror.vyos-users.jp/iso/release/1.1.6/vyos-1.1.6-amd64.iso",
-    "iso_checksum_value": "7bc131b199d59961aeb9568c375404d009dd6bff",
-    "artifact_name": "higebu/vyos-1.1.6-amd64",
-    "artifact_version": "1.0.0"
+    "iso_path": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.1.6/vyos-1.1.6-amd64.iso",
+    "iso_checksum_value": "7bc131b199d59961aeb9568c375404d009dd6bff"
   },
   "builders": [
     {
@@ -141,19 +139,19 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/virtualbox.sh",
-            "scripts/cleanup.sh",
-            "scripts/zerodisk.sh"
+            "../scripts/helium/base.sh",
+            "../scripts/helium/vagrant.sh",
+            "../scripts/helium/virtualbox.sh",
+            "../scripts/helium/cleanup.sh",
+            "../scripts/helium/zerodisk.sh"
           ]
         },
         "vmware-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/cleanup.sh",
-            "scripts/zerodisk.sh"
+            "../scripts/helium/base.sh",
+            "../scripts/helium/vagrant.sh",
+            "../scripts/helium/cleanup.sh",
+            "../scripts/helium/zerodisk.sh"
           ]
         }
       },
@@ -164,28 +162,6 @@
     {
       "output": "./vyos-{{user `product_version`}}-amd64_{{.Provider}}.box",
       "type": "vagrant"
-    },
-    {
-      "type": "atlas",
-      "only": ["vmware-iso"],
-      "artifact": "{{user `artifact_name`}}",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "vmware_desktop",
-        "version": "{{user `artifact_version`}}",
-        "created_at": "{{timestamp}}"
-      }
-    },
-    {
-      "type": "atlas",
-      "only": ["virtualbox-iso"],
-      "artifact": "{{user `artifact_name`}}",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "virtualbox",
-        "version": "{{user `artifact_version`}}",
-        "created_at": "{{timestamp}}"
-      }
     }
   ]
 }
