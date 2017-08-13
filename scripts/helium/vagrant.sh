@@ -9,7 +9,7 @@ PUBLIC_KEY=$(perl -MLWP::Simple -e 'print get("https://raw.githubusercontent.com
 
 TYPE=$(echo $PUBLIC_KEY | awk '{print $1}')
 KEY=$(echo $PUBLIC_KEY | awk '{print $2}')
-set system login user vagrant authentication public-keys vagrant type $TYPE
-set system login user vagrant authentication public-keys vagrant key $KEY
+set system login user vyos authentication public-keys vagrant type $TYPE
+set system login user vyos authentication public-keys vagrant key $KEY
 commit
 save

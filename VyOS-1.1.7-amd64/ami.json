@@ -1,0 +1,79 @@
+{
+  "variables": {
+    "product_version": "1.1.7",
+    "iso_path": "http://ftp.tsukuba.wide.ad.jp/software/vyos/iso/release/1.1.7/vyos-1.1.7-amd64.iso",
+    "iso_checksum_value": "c40a889469e0eea43d92c73149f1058e3650863b"
+  },
+  "builders": [
+    {
+      "type": "qemu",
+      "name": "ami",
+      "vm_name": "vyos_ami.img",
+      "boot_wait": "30s",
+      "disk_size": 4096,
+      "iso_url": "{{user `iso_path`}}",
+      "iso_checksum": "{{user `iso_checksum_value`}}",
+      "iso_checksum_type": "sha1",
+      "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+      "ssh_password": "vyos",
+      "ssh_username": "vyos",
+      "ssh_wait_timeout": "3000s",
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "accelerator": "kvm",
+      "headless": true,
+      "format": "raw",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_command": [
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "install image<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "<enter><wait10>",
+        "sudo sed -i 's/reboot -d -f -i/eject -m cdrom\\n\\treboot -d -f -i/' /etc/init.d/reboot<enter><wait>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "configure<enter><wait>",
+        "delete system console<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter><wait>",
+        "exit<enter><wait>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "../scripts/helium/ssh.sh",
+        "../scripts/helium/ami.sh",
+        "../scripts/helium/ami-cleanup.sh"
+      ]
+    }
+  ]
+}

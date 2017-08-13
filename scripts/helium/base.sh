@@ -27,7 +27,5 @@ sudo apt-get -y -o APT::Get::AllowUnauthenticated=true install linux-vyatta-kbui
 sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyos/ /usr/src/linux
 sudo ln -s /usr/src/linux-image/debian/build/build-amd64-none-amd64-vyos/ /lib/modules/$(uname -r)/build
 
-# Tweak sshd to prevent DNS resolution (speed up logins)
-set service ssh disable-host-validation
 commit
 save

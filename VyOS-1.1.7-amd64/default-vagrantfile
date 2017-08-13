@@ -1,0 +1,9 @@
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder './', '/vagrant',
+                          type: "rsync",
+                          owner: 'vyos',
+                          group: 'users',
+                          mount_options: ['dmode=775,fmode=775']
+  config.ssh.username = "vyos"
+  config.ssh.password = "vyos"
+end

@@ -19,8 +19,8 @@
         "<wait10>",
         "<enter><wait>",
         "<enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
         "<enter><wait10>",
         "sudo sed -i 's/reboot -d -f -i/eject -m cdrom\\n\\treboot -d -f -i/' /etc/init.d/reboot<enter><wait>",
         "reboot<enter><wait>",
@@ -30,12 +30,10 @@
         "<wait10>",
         "<wait10>",
         "vyos<enter><wait>",
-        "vagrant<enter><wait>",
+        "vyos<enter><wait>",
         "configure<enter><wait>",
         "delete system console<enter><wait>",
         "set interface ethernet eth0 address dhcp<enter><wait>",
-        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
-        "set system login user vagrant level admin<enter><wait>",
         "set service ssh<enter><wait>",
         "commit<enter><wait>",
         "save<enter><wait>",
@@ -54,8 +52,8 @@
       "iso_checksum": "{{user `iso_checksum_value`}}",
       "iso_checksum_type": "sha1",
       "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
+      "ssh_password": "vyos",
+      "ssh_username": "vyos",
       "ssh_wait_timeout": "3000s",
       "type": "virtualbox-iso",
       "vboxmanage": [
@@ -87,8 +85,8 @@
         "<wait10>",
         "<enter><wait>",
         "<enter><wait>",
-        "vagrant<enter><wait>",
-        "vagrant<enter><wait>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
         "<enter><wait10>",
         "sudo sed -i 's/reboot -d -f -i/eject -m cdrom\\n\\treboot -d -f -i/' /etc/init.d/reboot<enter><wait>",
         "reboot<enter><wait>",
@@ -98,12 +96,10 @@
         "<wait10>",
         "<wait10>",
         "vyos<enter><wait>",
-        "vagrant<enter><wait>",
+        "vyos<enter><wait>",
         "configure<enter><wait>",
         "delete system console<enter><wait>",
         "set interface ethernet eth0 address dhcp<enter><wait>",
-        "set system login user vagrant authentication plaintext-password vagrant<enter><wait>",
-        "set system login user vagrant level admin<enter><wait>",
         "set service ssh<enter><wait>",
         "commit<enter><wait>",
         "save<enter><wait>",
@@ -122,8 +118,8 @@
       "iso_checksum": "{{user `iso_checksum_value`}}",
       "iso_checksum_type": "sha1",
       "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
+      "ssh_password": "vyos",
+      "ssh_username": "vyos",
       "ssh_wait_timeout": "3000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
@@ -132,6 +128,115 @@
         "memsize": "256",
         "numvcpus": "1"
       }
+    },
+    {
+      "boot_command": [
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "install image<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "Yes<enter><wait>",
+        "<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "<enter><wait10>",
+        "sudo sed -i 's/reboot -d -f -i/eject -m cdrom\\n\\treboot -d -f -i/' /etc/init.d/reboot<enter><wait>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "vyos<enter><wait>",
+        "vyos<enter><wait>",
+        "configure<enter><wait>",
+        "delete system console<enter><wait>",
+        "set interface ethernet eth0 address dhcp<enter><wait>",
+        "set service ssh<enter><wait>",
+        "commit<enter><wait>",
+        "save<enter><wait>",
+        "exit<enter><wait>",
+        "reboot<enter><wait>",
+        "Yes<enter><wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>"
+      ],
+      "boot_wait": "30s",
+      "disk_size": 4096,
+      "iso_url": "{{user `iso_path`}}",
+      "iso_checksum": "{{user `iso_checksum_value`}}",
+      "iso_checksum_type": "sha1",
+      "shutdown_command": "echo 'halt -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+      "ssh_password": "vyos",
+      "ssh_username": "vyos",
+      "ssh_wait_timeout": "3000s",
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "type": "qemu",
+      "accelerator": "kvm",
+      "headless": true,
+      "format": "qcow2",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio"
+    },
+    {
+      "name": "ami",
+      "type": "qemu",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "md5",
+      "shutdown_command": "sudo halt -p",
+      "disk_size": 4096,
+      "format": "raw",
+      "headless": true,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "vyos",
+      "ssh_password": "vyos",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "300s",
+      "vm_name": "vyos_ami.img",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "5s",
+      "boot_command":
+      [
+        "<enter><wait3m>",
+        "vyos<enter><wait5>",
+        "vyos<wait><enter><wait10>",
+        "install image<enter><wait5>",
+        "<enter><wait5>",
+        "<enter><wait5>",
+        "<enter><wait5>",
+        "Yes<enter><wait5>",
+        "<enter><wait10>",
+        "<enter><wait5>",
+        "<enter><wait5>",
+        "vyos<enter><wait5>",
+        "vyos<enter><wait10>",
+        "<enter><wait10><wait10>",
+        "reboot<enter><wait5>",
+        "Yes<enter><wait3m>",
+        "vyos<enter><wait5>",
+        "vyos<enter><wait10>",
+        "configure<enter><wait5>",
+        "set interface ethernet eth0 address dhcp<enter><wait5>",
+        "set service ssh<enter><wait5>",
+        "commit<enter><wait5>",
+        "save<enter><wait5>",
+        "delete interface ethernet eth0 hw-id<enter><wait5>",
+        "commit<enter><wait5>",
+        "save<enter><wait5>",
+        "exit<enter><wait5>"
+      ]
     }
   ],
   "provisioners": [
@@ -140,8 +245,18 @@
         "virtualbox-iso": {
           "scripts": [
             "../scripts/helium/base.sh",
+            "../scripts/helium/ssh.sh",
             "../scripts/helium/vagrant.sh",
             "../scripts/helium/virtualbox.sh",
+            "../scripts/helium/cleanup-kernel-headers.sh",
+            "../scripts/helium/cleanup.sh",
+            "../scripts/helium/zerodisk.sh"
+          ]
+        },
+        "qemu": {
+          "scripts": [
+            "../scripts/helium/ssh.sh",
+            "../scripts/helium/vagrant.sh",
             "../scripts/helium/cleanup.sh",
             "../scripts/helium/zerodisk.sh"
           ]
@@ -149,8 +264,10 @@
         "vmware-iso": {
           "scripts": [
             "../scripts/helium/base.sh",
+            "../scripts/helium/ssh.sh",
             "../scripts/helium/vagrant.sh",
             "../scripts/helium/vmware.sh",
+            "../scripts/helium/cleanup-kernel-headers.sh",
             "../scripts/helium/cleanup.sh",
             "../scripts/helium/zerodisk.sh"
           ]
@@ -161,8 +278,14 @@
   ],
   "post-processors": [
     {
+      "type": "vagrant",
       "output": "./vyos-{{user `product_version`}}-amd64_{{.Provider}}.box",
-      "type": "vagrant"
+      "vagrantfile_template": "./default-vagrantfile",
+      "override": {
+        "qemu": {
+          "vagrantfile_template": "./libvirt-vagrantfile"
+        }
+      }
     }
   ]
 }

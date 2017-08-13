@@ -1,0 +1,74 @@
+#/bin/bash
+
+# Upload img to S3
+aws s3 cp ./output-ami/vyos_ami.img s3://$S3_BACKET_NAME/
+
+cat <<EOF > container.json
+{
+    "Description": "VyOS 1.1.7",
+    "Format": "raw",
+    "UserBucket": {
+        "S3Bucket": "$S3_BACKET_NAME",
+        "S3Key": "vyos_ami.img"
+    }
+}
+EOF
+
+# Import img as snapshot
+import_task_id=$(aws ec2 import-snapshot --description "VyOS 1.1.7" --disk-container file://container.json | jq -r .ImportTaskId)
+echo "ImportTaskId: "$import_task_id
+
+# Waiting for import-snapshot
+snapshot_id=""
+while true
+do
+  result=$(aws ec2 describe-import-snapshot-tasks --import-task-ids $import_task_id)
+  status=$(echo "$result" | jq -r .ImportSnapshotTasks[0].SnapshotTaskDetail.Status)
+  echo "ImportSnapshotTask status: "$status
+  if [ $status = "completed" ]; then
+    snapshot_id=$(echo "$result" | jq -r .ImportSnapshotTasks[0].SnapshotTaskDetail.SnapshotId)
+    echo "SnapshotId: "$snapshot_id
+    break
+  fi
+  sleep 10
+done
+
+src_image_id=$(aws ec2 register-image --name "VyOS 1.1.7" \
+  --architecture x86_64 \
+  --root-device-name /dev/sda1 \
+  --virtualization-type hvm \
+  --block-device-mappings DeviceName="/dev/sda1",Ebs={SnapshotId=$snapshot_id} \
+  --description "VyOS 1.1.7 by higebu" | jq -r .ImageId)
+echo "ImageId: "$src_image_id
+
+aws s3 rm s3://$S3_BACKET_NAME/vyos_ami.img
+
+aws ec2 modify-image-attribute --image-id $src_image_id --launch-permission "{\"Add\":[{\"Group\":\"all\"}]}"
+
+src_region=$AWS_DEFAULT_REGION
+summary="$src_region $src_image_id"
+regions=$(aws ec2 describe-regions --query 'Regions[].{Name:RegionName}' --output text | grep -v $AWS_DEFAULT_REGION)
+for region in $(echo $regions); do
+  echo "region: "$region
+  image_id=$(aws ec2 copy-image \
+    --description "VyOS 1.1.7 by higebu" \
+    --name "VyOS 1.1.7" \
+    --source-image-id $src_image_id \
+    --source-region $src_region \
+    --region $region | jq -r .ImageId)
+  # Waiting for copy image
+  while true
+  do
+    status=$(aws ec2 describe-images --image-ids $image_id --region $region | jq -r .Images[0].State)
+    echo "CopyImage status: "$status
+    if [ $status = "available" ]; then
+      break
+    fi
+    sleep 10
+  done
+  aws ec2 modify-image-attribute --region $region --image-id $image_id --launch-permission "{\"Add\":[{\"Group\":\"all\"}]}"
+  summary=$(echo "$summary\n$region $image_id")
+done
+
+echo "Region AMI ID"
+echo -e "$summary"
