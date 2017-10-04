@@ -11,7 +11,7 @@ sudo pip install awscli
 sudo update-rc.d ec2-fetch-ssh-public-key disable
 
 # Install vyos-cloudinit
-perl -MLWP::Simple -e 'getstore("https://github.com/higebu/vyos-cloudinit/releases/download/v0.3.1/vyos-cloudinit_0.3.1_all.deb", "vyos-cloudinit.deb")'
+perl -MLWP::Simple -e 'getstore("https://github.com/higebu/vyos-cloudinit/releases/download/v0.3.2/vyos-cloudinit_0.3.2_all.deb", "vyos-cloudinit.deb")'
 sudo dpkg -i vyos-cloudinit.deb
 
 # Cleanup

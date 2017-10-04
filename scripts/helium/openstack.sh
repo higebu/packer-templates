@@ -1,7 +1,7 @@
 #!/bin/vbash
 
 # Install vyos-cloudinit
-perl -MLWP::Simple -e 'getstore("https://github.com/vyos/vyos-cloudinit/releases/download/v0.3.1/vyos-cloudinit_0.3.1_all.deb", "vyos-cloudinit.deb")'
+perl -MLWP::Simple -e 'getstore("https://github.com/vyos/vyos-cloudinit/releases/download/v0.3.2/vyos-cloudinit_0.3.2_all.deb", "vyos-cloudinit.deb")'
 sudo dpkg -i vyos-cloudinit.deb
 
 # Cleanup
