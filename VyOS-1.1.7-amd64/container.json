@@ -1,0 +1,8 @@
+{
+    "Description": "VyOS 1.1.7",
+    "Format": "raw",
+    "UserBucket": {
+        "S3Bucket": "higebu-import",
+        "S3Key": "vyos_ami.img"
+    }
+}

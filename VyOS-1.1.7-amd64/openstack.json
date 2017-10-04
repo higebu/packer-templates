@@ -7,8 +7,8 @@
   "builders": [
     {
       "type": "qemu",
-      "name": "ami",
-      "vm_name": "vyos_ami.img",
+      "name": "openstack",
+      "vm_name": "vyos_openstack.img",
       "boot_wait": "30s",
       "disk_size": 4096,
       "iso_url": "{{user `iso_path`}}",
@@ -71,7 +71,7 @@
       "type": "shell",
       "scripts": [
         "../scripts/helium/ssh.sh",
-        "../scripts/helium/ami.sh",
+        "../scripts/helium/openstack.sh",
         "../scripts/helium/cleanup.sh"
       ]
     }
